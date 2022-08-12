@@ -23,3 +23,15 @@ jobs:
       - name: Build Image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }
+        run: |
+          #cd ${{ matrix.ECR_REPOSITORY }}/
+          ls -ltra
+          # Build Docker image
+          docker build -t $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG .
+          
+      - name: Push Image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          # Push simple-webapp-mysql image to AWS ECR
+          docker push $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG
