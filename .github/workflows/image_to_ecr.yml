@@ -2,12 +2,15 @@
 name: Deploy App image to ECR
 
 on:
+# Triggering workflow on push and pull
   push:
-    branches: [main]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   
 jobs:
   build:
-    name: Build Docker Image
+    name: Build Docker Images
     runs-on: ubuntu-latest
     
     steps:
@@ -20,7 +23,7 @@ jobs:
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_REGION: us-east-1
       
-      - name: Build Image
+      - name: Build Docker Image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }
         run: |
@@ -28,10 +31,17 @@ jobs:
           ls -ltra
           # Build Docker image
           docker build -t $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG .
+          # Run the container for testing test
+          docker run -d -p 80:81 --name webapp-image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          # List the containers
+          docker ps
+          echo " sleep 15 seconds for container to run"
+          sleep 15
           
       - name: Push Image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           # Push simple-webapp-mysql image to AWS ECR
+          echo "Pushing simple-webapp-mysql image to ECR >>>"
           docker push $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG
