@@ -8,13 +8,20 @@ metadata:
 spec:
   containers:
   - name: simple-webapp-mysql
-    image: kodekloud/simple-webapp-mysql
+    image: 082521539391.dkr.ecr.us-east-1.amazonaws.com/final-ecr:webapp
     ports:
     - containerPort: 8080
+    env:
+    valueFrom:
+      configMapKeyRef:
+        name: webapp-config
+        key: group
     volumeMounts:
     - name: app-secret-volumes
       mountPath: "/opt/app-secret-volumes"
       readOnly: true
+    - name: config-volume
+      mountPath: /clo835/config
     envFrom:
       - secretRef:
           name: app-secret
@@ -22,3 +29,9 @@ spec:
     - name: app-secret-volumes
       secret:
         secretName: app-secret
+    - name: config-volume
+    configMap:
+      name: webapp-config
+      items:
+        - key: image_url
+          path: image_url
