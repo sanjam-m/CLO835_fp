@@ -8,4 +8,4 @@ data:
     {  
        "success_url": "s3://group10-final/success.jpg", 
        "failed_url": "s3://group10-final/failed.png"
-     }
+    }
