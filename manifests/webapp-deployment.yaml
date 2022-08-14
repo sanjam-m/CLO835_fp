@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-webapp-mysql
@@ -8,12 +8,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-        name: simple-webapp-mysql
-   replicas: 1
-   template:
-     metadata:
-       labels:
-         name: simple-webapp-mysql
+      name: simple-webapp-mysql
+  replicas: 1
+  template:
+    metadata:
+        labels:
+          name: simple-webapp-mysql
     spec:
       containers:
       - name: simple-webapp-mysql
@@ -22,7 +22,7 @@ spec:
         - containerPort: 81
         env:
         - name: Group-no
-            valueFrom:
+          valueFrom:
             configMapKeyRef:
               name: webapp-config
               key: group
@@ -30,18 +30,18 @@ spec:
         - name: app-secret-volumes
           mountPath: "/opt/app-secret-volumes"
           readOnly: true
-          - name: config-volume
-            mountPath: /clo835/config
-          envFrom:
-            - secretRef:
-              name: app-secret
-        volumes:
-        - name: app-secret-volumes
-          secret:
-            secretName: app-secret
         - name: config-volume
-          configMap:
-            name: webapp-config
-            items:
-            - key: image_url
-              path: image_url
+          mountPath: /clo835/config
+        envFrom:
+          - secretRef:
+              name: app-secret
+      volumes:
+      - name: app-secret-volumes
+        secret:
+          secretName: app-secret
+      - name: config-volume
+        configMap:
+          name: webapp-config
+          items:
+          - key: image_url
+            path: image_url
