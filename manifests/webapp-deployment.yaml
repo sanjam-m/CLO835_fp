@@ -21,15 +21,27 @@ spec:
         ports:
         - containerPort: 81
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: DB_Password
-        volumeMounts:
-          - name: mysql-data
-            mountPath: /var/lib/mysql
+            - name: GROUP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: webapp-config
+                  key: group
+          volumeMounts:
+            - name: app-secret-volumes
+              mountPath: "/opt/app-secret-volumes"
+              readOnly: true
+            - name: config-volume
+              mountPath: /clo835/config
+          envFrom:
+            - secretRef:
+                name: app-secret
       volumes:
-        - name: mysql-data
-          persistentVolumeClaim:
-            claimName: mysql-pvc
+        - name: app-secret-volumes
+          secret:
+            secretName: app-secret
+        - name: config-volume
+          configMap:
+            name: webapp-config
+            items:
+              - key: image_url
+                path: image_url
