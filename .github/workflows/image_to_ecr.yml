@@ -60,4 +60,4 @@ jobs:
         run: |
           # Push simple-webapp-mysql image to AWS ECR
           echo "Pushing simple-webapp-mysql image to ECR >>>"
-          docker push $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG
+          docker push  062250909988.dkr.ecr.us-east-1.amazonaws.com/final:$IMAGE_TAG
