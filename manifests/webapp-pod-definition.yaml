@@ -12,10 +12,11 @@ spec:
     ports:
     - containerPort: 8080
     env:
-    valueFrom:
-      configMapKeyRef:
-        name: webapp-config
-        key: group
+    - name: Group-no
+      valueFrom:
+        configMapKeyRef:
+          name: webapp-config
+          key: group
     volumeMounts:
     - name: app-secret-volumes
       mountPath: "/opt/app-secret-volumes"
