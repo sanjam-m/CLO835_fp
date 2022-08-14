@@ -5,8 +5,6 @@ on:
 # Triggering workflow on push and pull
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
     
 env:
   IMAGE_TAG: v1.6    
