@@ -38,7 +38,7 @@ jobs:
           #cd ${{ matrix.ECR_REPOSITORY }}/
           ls -ltra
           # Build Docker image
-          docker build -t $ECR_REGISTRY/final:$IMAGE_TAG .
+          docker build -t 062250909988.dkr.ecr.us-east-1.amazonaws.com/final:$IMAGE_TAG .
       
       - name: Test Image
         env:
