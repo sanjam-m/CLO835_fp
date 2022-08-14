@@ -38,7 +38,7 @@ jobs:
           #cd ${{ matrix.ECR_REPOSITORY }}/
           ls -ltra
           # Build Docker image
-          docker build -t $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG .
+          docker build -t $ECR_REGISTRY/final:$IMAGE_TAG .
       
       - name: Test Image
         env:
