@@ -22,6 +22,9 @@ jobs:
           - final
     
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
