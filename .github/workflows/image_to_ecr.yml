@@ -40,7 +40,7 @@ jobs:
           #cd ${{ matrix.ECR_REPOSITORY }}/
           ls -ltra
           # Build Docker image
-          docker build -t 062250909988.dkr.ecr.us-east-1.amazonaws.com/final:$IMAGE_TAG .
+          docker build -t 062250909988.dkr.ecr.us-east-1.amazonaws.com/final_project:$IMAGE_TAG .
       
       #- name: Test Image
        # env:
@@ -58,4 +58,4 @@ jobs:
         run: |
           # Push simple-webapp-mysql image to AWS ECR
           echo "Pushing simple-webapp-mysql image to ECR >>>"
-          docker push  062250909988.dkr.ecr.us-east-1.amazonaws.com/final:$IMAGE_TAG
+          docker push  062250909988.dkr.ecr.us-east-1.amazonaws.com/final_project:$IMAGE_TAG
