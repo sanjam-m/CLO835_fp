@@ -16,6 +16,11 @@ jobs:
     name: Build Docker Images
     runs-on: ubuntu-latest
     
+    strategy:
+      matrix:
+        ECR_REPOSITORY:
+          - final
+    
     steps:
       - name: Login to Amazon ECR
         id: login-ecr
