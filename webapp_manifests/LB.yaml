@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grp10-lb
+  labels:
+    app.kubernetes.io/app: webapp
+    app.kubernetes.io/name: grp10-pod
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 81
+  selector:
+    app.kubernetes.io/app: webapp
+    app.kubernetes.io/name: grp10-pod
