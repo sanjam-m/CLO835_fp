@@ -1,11 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: webapp-service
+  name: simple-webapp-mysql
 spec:
   selector:
     name: simple-webapp-mysql
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 81
+    targetPort: 8080

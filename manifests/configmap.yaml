@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: webapp-config
 data:
-  group: Group_10
+  group: "Group_10"
   image_url: |
     {  
        "success_url": "s3://group10-final/success.jpg", 
