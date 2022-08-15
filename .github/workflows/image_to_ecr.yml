@@ -57,7 +57,9 @@ jobs:
       - name: Push Image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: asgfecr
+          IMAGE_TAG: v1.6
         run: |
           # Push simple-webapp-mysql image to AWS ECR
-          echo "Pushing simple-webapp-mysql image to ECR >>>"
+          echo "Pushing simple-webapp-mysql image to ECR"
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
