@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-webapp-mysql
+  labels:
+    app: example-app
+    name: simple-webapp-mysql
+spec:
+  selector:
+    matchLabels:
+      app: example-app
+      name: simple-webapp-mysql
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: example-app
+        name: simple-webapp-mysql
+    spec:
+      containers:
+       - name: simple-webapp-mysql
+         image: 376056455079.dkr.ecr.us-east-1.amazonaws.com/asgfecr:imgv1
+         ports:
+         - containerPort: 81
+         envFrom:
+          - secretRef:
+             name: grp10-secret
+          - configMapRef: 
+             name: grp10-config
