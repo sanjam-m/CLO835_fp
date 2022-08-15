@@ -13,12 +13,6 @@ jobs:
   build:
     name: Build Docker Images
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        ECR_REPOSITORY:
-          - final_project
-    
     steps:
       - name: Check out code
         uses: actions/checkout@v2
