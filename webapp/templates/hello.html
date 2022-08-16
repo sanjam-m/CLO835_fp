@@ -1,5 +1,5 @@
-<!doctype html>
-<title>Welcome to Final Project from Group 10</title>
+!doctype html>
+<title>Hello from Group 10</title>
 <body style="background: {{ color }};"></body>
 <div style="color: #e4e4e4;
     text-align:  center;
@@ -7,11 +7,11 @@
     vertical-align:  middle;">
 
   {% if db_connect_result %}
-    <img src="https://s3:publicimage-success.png">
+    <img src="https://asgf3s3.s3.amazonaws.com/success.jpg">
     <h3> Successfully connected to the MySQL database.</h3>
-    <h4> S3 IMAGE URL - "https://s3:publicimage-success.png"</h4>
+    <h4> S3 URL - "https://asgf3s3.s3.amazonaws.com/success.jpg" </h4>
   {% else %}
-    <img src="https://s3:publicimage-failed.png">
+    <img src="https://asgf3s3.s3.amazonaws.com/failed.png">
     <h3> Failed connecting to the MySQL database. </h3>
   {% endif %}
 
