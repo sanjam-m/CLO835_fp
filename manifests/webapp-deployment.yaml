@@ -18,9 +18,9 @@ spec:
       serviceAccountName: clo835
       containers:
       - name: simple-webapp-mysql
-        image: 376056455079.dkr.ecr.us-east-1.amazonaws.com/asgfecr:imgv1
+        image: 376056455079.dkr.ecr.us-east-1.amazonaws.com/final_project:myimage
         ports:
-        - containerPort: 8080
+        - containerPort: 81
         env:
         - name: group
           valueFrom:
